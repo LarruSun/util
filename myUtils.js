@@ -462,3 +462,37 @@ LarrySun.delCookie=function(key){
 // delCookie('username');
 
 
+
+//22：通过数组中某个属性的排序  arr.sort(px(myObj.'updateTime'))
+
+LarrySun.px(key){
+		return function(obj1,obj2){
+			var a = obj1[key];
+			var b = obj2[key];
+			return a - b;
+		}
+	}
+	
+//23.从url中提取参数
+LarrySun.getUrlParam(name){
+	var str=window.location.search
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	var r = str.substr(1).match(reg);
+	if(r!=null)return decodeURI(r[2]); return null;
+ }
+ 
+ 
+ //23.手机验证正则
+ LarrySun.testPhone(str,str1){
+	/*手机验证正则 */
+	var myReg={
+		mobile:/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}|(17[0-9]{1})))+\d{8})$/,
+	};
+	if(!myReg.mobile.test(str)){//手机号码不正确
+		alertErrors("操作失败！请输入正确的手机格式",4000);
+		return false;
+	};
+	return true;
+},
+
+
